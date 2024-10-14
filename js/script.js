@@ -22,13 +22,45 @@ const discountPercentageUnder18 = 20
 
 const discountPercentageOver65 = 40
 
+//CREAZIONE OUTPUT
+let output;
+
+//CREAZIONE PREZZO TOTALE
+let totPrice;
+
+//!ELABORAZIONE
+
+//VALIDITÀ IMPUT ETÀ E KM
+const isDistanceValid = !isNaN(distance) && distance > 0;
 
 
-//ELABORAZIONE
+const isAgeValid = !isNaN(age) && age > 0;
+
+if(isDistanceValid && isAgeValid) {
+
+totPrice = distance * priceForKm;  
+
+output = totPrice;
 
 
+if(age<18) {
+    totPrice = totPrice - totPrice * (discountPercentageUnder18/100)
+
+    output = totPrice
+}
 
 
+if(age>= 65){
+    totPrice = totPrice - totPrice * (discountPercentageOver65/100)  
+    
+    output = totPrice
+}
 
+//!OUTPUT
 
-//OUTPUT
+alert(`Il prezzo del biglietto è di: ${output.toFixed(2)}€`);
+}
+
+else{
+    alert("i dati inseriti non sono corretti")
+}
